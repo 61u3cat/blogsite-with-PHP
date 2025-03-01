@@ -1,7 +1,5 @@
 <?php
 include "config.php";
-session_start();
-
 ?>
 <?php
 if (isset($_POST['submit'])) {
@@ -19,7 +17,7 @@ if (isset($_POST['submit'])) {
     $mail_check_result = mysqli_query($conn, $checkmail);
     if (mysqli_num_rows($mail_check_result) > 0) {
       $_SESSION['error'] = 'email already exists';
-      exit;
+      
     } else {
       $sql = "INSERT INTO blogusers (`name`,`email`,`password`,`role`) VALUES('$name','$email','$hashed_password','$role')";
       $values = mysqli_query($conn, $sql);
@@ -69,17 +67,17 @@ if (isset($_POST['submit'])) {
         <p class="login-box-msg">Register a new membership</p>
         <?php
         if (!empty($_SESSION['error'])) { ?>
-        <div class="alert-warning">
-        <?php     
-        echo $_SESSION['error'];
-        unset($_SESSION['error']);               
-        ?>
-        </div>
-          <?php
+          <div class="alert-warning">
+            <?php
+            echo $_SESSION['error'];
+            unset($_SESSION['error']);
+            ?>
+          </div>
+        <?php
         }
 
         ?>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
           <div class="input-group mb-3">
             <input type="text" name="fullname" class="form-control" placeholder="Full name" required>
             <div class="input-group-append">

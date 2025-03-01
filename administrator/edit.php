@@ -1,14 +1,14 @@
-<?php 
+<?php
 session_start();
-if (!isset($_SESSION["auth"])) {
-  header("Location: index.php");
-  exit;
-}
 include 'partials/header.php';
 include 'partials/sidebar.php';
-include "config.php";
+include 'config.php';
+
+$post_id = $_GET['post_id'];
+$sql = "SELECT * FROM blogposts WHERE post_id=$post_id";
+$result = mysqli_query($conn, $sql);
+$value = mysqli_fetch_assoc($result);
 ?>
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -26,24 +26,28 @@ include "config.php";
     </div><!-- /.container-fluid -->
   </section>
 
-  <form action="save-post.php" method="post" enctype="multipart/form-data">
+  <form action="save-update-post.php" method="post" enctype="multipart/form-data">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Create a new blog post</h3>
       </div>
+
+      <input type="hidden" value="<?= $post_id; ?>" name="post_id">
       <!-- /.card-header -->
       <div class="card-body">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" id="title" name="post_title" class="form-control" placeholder="Enter title" required>
+          <input type="text" id="title" name="post_title" value="<?= $value['title'] ?>" class="form-control" placeholder="Enter title" required>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea id="summernote" name="description" class="form-control" placeholder="Write your blog description here" required></textarea>
+          <textarea id="summernote" name="description" class="form-control" placeholder="Write your blog description here" required>
+          <?= $value['description'] ?>
+          </textarea>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Category</label>
-          <select name="category" class="form-control">
+          <select name="category" value="<?= $value['category'] ?>" class="form-control">
             <option disabled>Select Category</option>
             <?php
             include "config.php";
@@ -54,14 +58,15 @@ include "config.php";
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
 
-                echo "<option value='{$row['category_id']}'>{$row['category_name']}</option>";
+                $selected = $row['category_id'] == $value['category'] ? 'selected' : '';
+                echo "<option value='{$row['category_id']}' {$selected}>{$row['category_name']}</option>";
               }
             }
             echo $row;
             ?>
           </select>
         </div>
-        
+
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

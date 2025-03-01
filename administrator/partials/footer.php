@@ -1,17 +1,17 @@
 <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-    </div>
-  </footer>
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-    </div>
-  </footer>
+  <div class="float-right d-none d-sm-block">
+  </div>
+</footer>
+<footer class="main-footer">
+  <div class="float-right d-none d-sm-block">
+  </div>
+</footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -41,22 +41,17 @@
 
 <!-- Page specific script -->
 <script>
-  $(function () {
+  $(document).ready(function() {
     $('#summernote').summernote({
-      height: '300px'
-    })
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+      height: 300
     });
+ 
   });
+  $("#example1").DataTable({
+    "responsive": true,
+    "lengthChange": false,
+    "autoWidth": false,
+    "ordering": false,
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 </script>

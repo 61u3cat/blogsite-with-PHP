@@ -2,6 +2,9 @@
 include "config.php";
 
 session_start();
+if (isset($_SESSION["auth"])) {
+   header("Location: dashboard.php");
+ }
 if (isset($_POST['login'])) {
   //print_r($_POST);
   $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -11,9 +14,8 @@ if (isset($_POST['login'])) {
   if (mysqli_num_rows($values) > 0) {
     $row = mysqli_fetch_assoc($values);
     if (password_verify($password, $row['password'])) {
-      $_SESSION['email'] = $row['email'];
+      $_SESSION['auth'] = $row;
       header("Location: dashboard.php");
-      exit;
     } else {
       $_SESSION['error'] = 'Invalid password';
     }
@@ -106,8 +108,8 @@ if (isset($_POST['login'])) {
           <a href="#" class="btn btn-block btn-primary">
             <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
           </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          <a href="logout.php" class="btn btn-block btn-danger">
+            <i class="fab fa-google-plus mr-2"></i> Logout
           </a>
         </div>
         <!-- /.social-auth-links -->

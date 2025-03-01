@@ -1,6 +1,9 @@
 <?php
-include "config.php";
 session_start();
+include "config.php";
+if (!isset($_SESSION["auth"])) {
+  header("Location: index.php");
+}
 $id = $_GET['id'];
 $sql = "SELECT * FROM blogusers WHERE id=$id";
 $result = mysqli_query($conn, $sql);

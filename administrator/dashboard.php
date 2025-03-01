@@ -1,7 +1,14 @@
-<?php include 'partials/header.php'; ?>
-<?php include 'partials/sidebar.php'; ?>
-<?php include 'config.php';?>
+<?php
+session_start();
+if (!isset($_SESSION["auth"])) {
+  header("Location: index.php");
+  exit;
+}
+include 'partials/header.php';
+include 'partials/sidebar.php';
+include 'config.php';
 
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -51,31 +58,31 @@
                 <tbody>
                   <?php
                   $sql = "SELECT * FROM blogusers";
-                  $result = mysqli_query($conn,$sql);
-                  if(mysqli_num_rows($result)>0){
-                    while($row = mysqli_fetch_assoc($result)){                
-                      ?>
-                  <tr>
-                    <td><?= $row['id'] ?></td>
-                    <td><?= $row['name'] ?></td>
-                    <td><?= $row['email'] ?></td>
-                    <td><?= $row['role']== 1 ? 'Admin':'General';?></td>
+                  $result = mysqli_query($conn, $sql);
+                  if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                  ?>
+                      <tr>
+                        <td><?= $row['id'] ?></td>
+                        <td><?= $row['name'] ?></td>
+                        <td><?= $row['email'] ?></td>
+                        <td><?= $row['role'] == 1 ? 'Admin' : 'General'; ?></td>
 
-                    <td>
-                    <a href='edit-user.php?id=<?= $row['id']?>' class='btn btn-primary'>Edit</a>
-                    <a href='delete.php?id=<?= $row['id']?>' class='btn btn-danger' onclick='return confirm("are you sure?")'>Delete</a>
-                  </td>
+                        <td>
+                          <a href='edit-user.php?id=<?= $row['id'] ?>' class='btn btn-primary'>Edit</a>
+                          <a href='delete.php?id=<?= $row['id'] ?>' class='btn btn-danger' onclick='return confirm("are you sure?")'>Delete</a>
+                        </td>
 
                     <?php
+                    }
                   }
-                }
-                ?>
-                    
-                  </tr>
-                  </tbody>                              
-                
+                    ?>
+
+                      </tr>
+                </tbody>
+
                 <tfoot>
-                  
+
                 </tfoot>
               </table>
             </div>
