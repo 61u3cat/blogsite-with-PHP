@@ -38,7 +38,7 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="assets/plugins/summernote/summernote-bs4.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 <!-- Page specific script -->
 <script>
   $(document).ready(function() {

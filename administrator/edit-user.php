@@ -8,7 +8,7 @@ $id = $_GET['id'];
 $sql = "SELECT * FROM blogusers WHERE id=$id";
 $result = mysqli_query($conn, $sql);
 $value = mysqli_fetch_assoc($result);
-
+print_r($value);
 if (isset($_POST['submit'])) {
   $name = mysqli_real_escape_string($conn, $_POST['fullname']);
   $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
     $_SESSION['error'] = 'Passwords should match';
   } else {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    $sql1 = "UPDATE blogusers SET name='{$name}', email='{$email}', password='{$hashed_password}', role='{$role}' WHERE id='{$id}'";
+    $sql1 = "UPDATE blogusers SET name='{$name}', email='{$email}', password='{$hashed_password}', role='{$role}' WHERE id ='{$id}'";
     $values = mysqli_query($conn, $sql1);
     if ($values) {
       header("Location: dashboard.php");
@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
         }
         ?>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
+        <form action="" method="POST">
           <div class="input-group mb-3">
             <input type="text" name="fullname" value="<?= $value['name'] ?>" class="form-control" placeholder="Full name" required>
             <div class="input-group-append">

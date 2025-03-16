@@ -66,7 +66,25 @@ $value = mysqli_fetch_assoc($result);
             ?>
           </select>
         </div>
+        <div class="form-group">
+          <label for="inputGroupFile02">Upload Thumbnail</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile02" required>
+              <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+            </div>
+          </div>
+          <?php
+          if (!empty($value['thumbnail'])) {
+            echo '<img src="upload/' . htmlspecialchars($value['thumbnail']) . '" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 200px;">';
+          }
+          else{
+            echo '<img src="upload/' . htmlspecialchars() . '" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 200px;">';
 
+          }
+          ?>
+
+        </div>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

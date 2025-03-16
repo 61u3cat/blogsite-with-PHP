@@ -1,7 +1,7 @@
 <header class="navigation">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light px-0">
-      <a class="navbar-brand order-1 py-0" href="index.html">
+      <a class="navbar-brand order-1 py-0" href="index.php">
         <img loading="prelaod" decoding="async" class="img-fluid" src="images/logo.png" alt="Reporter Hugo">
       </a>
       <div class="navbar-actions order-3 ml-0 ml-md-4">
@@ -14,18 +14,18 @@
       </form>
       <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
         <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
-          <li class="nav-item"> <a class="nav-link" href="about.html">About Me</a>
+          <li class="nav-item"> <a class="nav-link" href="about.php">About Me</a>
           </li>
           <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Articles
             </a>
-            <div class="dropdown-menu"> <a class="dropdown-item" href="travel.html">Travel</a>
-              <a class="dropdown-item" href="travel.html">Lifestyle</a>
-              <a class="dropdown-item" href="travel.html">Cruises</a>
+            <div class="dropdown-menu"> <a class="dropdown-item" href="technology.php">Travel</a>
+              <a class="dropdown-item" href="travel.php">Lifestyle</a>
+              <a class="dropdown-item" href="travel.php">Cruises</a>
             </div>
           </li>
-          <li class="nav-item"> <a class="nav-link" href="contact.html">Contact</a>
+          <li class="nav-item"> <a class="nav-link" href="contact.php">Contact</a>
           </li>
         </ul>
       </div>

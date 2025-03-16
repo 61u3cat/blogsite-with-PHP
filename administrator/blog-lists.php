@@ -47,6 +47,7 @@
                     <th>Category</th>
                     <th>Post-Date</th>
                     <th>Author</th>
+                    <th>Thumbnail</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -64,6 +65,7 @@
                         <td><?= $row['category_name'] ?></td>
                         <td><?= $row['post_date'] ?></td>
                         <td><?= $row['name'] ?></td>
+                        <td><img src="upload/<?= $row['thumbnail'] ?>"></td>
                         <td>
                           <a href='edit.php?post_id=<?= $row['post_id'] ?>' class='btn btn-primary'>Edit</a>
                           <a href='delete.php?post_id=<?= $row['post_id'] ?>' class='btn btn-danger' onclick='return confirm("are you sure?")'>Delete</a>

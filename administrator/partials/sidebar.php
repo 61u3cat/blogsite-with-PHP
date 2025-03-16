@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="../../index3.html" class="brand-link">
-    <img src="../../assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+  <a href="#" class="brand-link">
+    <img src="../administrator/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">Blog-Dash</span>
   </a>
 
   <!-- Sidebar -->
@@ -11,10 +11,17 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../../assets/img/user1-128x128.png" class="img-circle elevation-2" alt="User Image">
+        <img src="../administrator/assets/img/user1-128x128.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <?php
+        $fullName = $_SESSION['auth']['name'];
+        $firstName = explode(' ', trim($fullName))[0];
+        ?>
+        <a href="#" class="d-block">Hello, <?php echo $firstName; ?></a>
+        <a href="logout.php" class="btn btn-block btn-danger mt-2">
+          <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        </a>
       </div>
     </div>
 
@@ -56,7 +63,17 @@
         </li> <!-- Closing tag for the navigation item -->
 
         <!-- Navigation Item for Blog Lists, adds class 'menu-open' if $current is 'blog-lists' -->
-        <li class="nav-item <?= $current == 'blog-lists' ? 'menu-open' : '' ?>">
+        <li class="nav-item 
+          <?php 
+
+          if($current == 'blog-lists'){
+            echo 'menu-open';
+          }elseif($current == 'dashboard'){
+            echo 'menu-open';
+
+          }
+          ?>
+        ">
           <!-- Link to open sub-menu for Blog Lists -->
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i> <!-- Icon for Lists -->
@@ -73,10 +90,16 @@
                 <i class="far fa-circle nav-icon"></i> <!-- Icon for Blog Lists -->
                 <p>Blogs Lists</p> <!-- Text for Blog Lists -->
               </a>
+              <a href="dashboard.php" class="nav-link <?= $current == 'dashboard' ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i> <!-- Icon for Blog Lists -->
+                <p>UserList</p> <!-- Text for Blog Lists -->
+              </a>
+              <?php
+              
+              echo $current; ?>
             </li>
           </ul>
         </li>
-
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

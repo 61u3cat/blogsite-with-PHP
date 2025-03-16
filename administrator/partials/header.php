@@ -4,8 +4,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'create-blog') !== false) {
   $current = 'create-blog';
 } elseif (strpos($_SERVER['REQUEST_URI'], 'blog-lists') !== false) {
   $current = 'blog-lists';
+}elseif (strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false) {
+  $current = 'dashboard';
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -43,20 +44,18 @@ if (strpos($_SERVER['REQUEST_URI'], 'create-blog') !== false) {
         <li class="nav-item d-none d-sm-inline-block">
           <a href="dashboard.php" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="logout.php" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Logout
-          </a>
-        </li>
+
       </ul>
+   
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <li class="nav-item">
-          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-          </a>
+          <div class="class">
+
+            
+          </div>
           <div class="navbar-search-block">
             <form class="form-inline">
               <div class="input-group input-group-sm">
@@ -65,20 +64,19 @@ if (strpos($_SERVER['REQUEST_URI'], 'create-blog') !== false) {
                   <button class="btn btn-navbar" type="submit">
                     <i class="fas fa-search"></i>
                   </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                  </button>
                 </div>
+
               </div>
             </form>
           </div>
         </li>
+      
 
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-comments"></i>
-            <span class="badge badge-danger navbar-badge">3</span>
+            <span class="badge badge-danger navbar-badge">POOP</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <a href="#" class="dropdown-item">
