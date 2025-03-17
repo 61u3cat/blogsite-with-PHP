@@ -54,4 +54,23 @@
     "ordering": false,
     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+</script>
+<script>
+  function previewThumbnail(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('thumbnailPreview');
+      output.src = reader.result;
+      output.style.display = 'block';
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function previewThumbnailUrl(event) {
+    var url = event.target.value;
+    var output = document.getElementById('thumbnailPreview');
+    output.src = url;
+    output.style.display = 'block';
+  }
 </script>

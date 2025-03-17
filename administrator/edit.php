@@ -15,11 +15,11 @@ $value = mysqli_fetch_assoc($result);
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Write a blog</h1>
+          <h1>Edit Blog Post</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Create Blogs</a></li>
+            <li class="breadcrumb-item"><a href="#">Edit Blog</a></li>
           </ol>
         </div>
       </div>
@@ -29,7 +29,7 @@ $value = mysqli_fetch_assoc($result);
   <form action="save-update-post.php" method="post" enctype="multipart/form-data">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Create a new blog post</h3>
+        <h3 class="card-title">Edit Blog Post</h3>
       </div>
 
       <input type="hidden" value="<?= $post_id; ?>" name="post_id">
@@ -37,32 +37,28 @@ $value = mysqli_fetch_assoc($result);
       <div class="card-body">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" id="title" name="post_title" value="<?= $value['title'] ?>" class="form-control" placeholder="Enter title" required>
+          <input type="text" id="title" name="post_title" value="<?= htmlspecialchars($value['title']) ?>" class="form-control" placeholder="Enter title" required>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
           <textarea id="summernote" name="description" class="form-control" placeholder="Write your blog description here" required>
-          <?= $value['description'] ?>
+          <?= htmlspecialchars($value['description']) ?>
           </textarea>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Category</label>
-          <select name="category" value="<?= $value['category'] ?>" class="form-control">
+          <label for="category">Category</label>
+          <select name="category" class="form-control" required>
             <option disabled>Select Category</option>
             <?php
-            include "config.php";
             $sql = "SELECT * FROM blogcategories";
-
             $result = mysqli_query($conn, $sql) or die('query failed');
 
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
-
                 $selected = $row['category_id'] == $value['category'] ? 'selected' : '';
                 echo "<option value='{$row['category_id']}' {$selected}>{$row['category_name']}</option>";
               }
             }
-            echo $row;
             ?>
           </select>
         </div>
@@ -70,25 +66,18 @@ $value = mysqli_fetch_assoc($result);
           <label for="inputGroupFile02">Upload Thumbnail</label>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile02" required>
+              <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile02">
               <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
             </div>
           </div>
-          <?php
-          if (!empty($value['thumbnail'])) {
-            echo '<img src="upload/' . htmlspecialchars($value['thumbnail']) . '" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 200px;">';
-          }
-          else{
-            echo '<img src="upload/' . htmlspecialchars() . '" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 200px;">';
-
-          }
-          ?>
-
+          <?php if (!empty($value['thumbnail'])): ?>
+            <img src="upload/<?= htmlspecialchars($value['thumbnail']) ?>" alt="Current Thumbnail" class="img-thumbnail mt-2" style="max-width: 200px;">
+          <?php endif; ?>
         </div>
       </div>
       <!-- /.card-body -->
       <div class="card-footer">
-        <button type="submit" name="submit" class="btn btn-primary">Post</button>
+        <button type="submit" name="submit" class="btn btn-primary">Update</button>
       </div>
     </div>
     <!-- /.card -->

@@ -20,9 +20,12 @@
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Articles
             </a>
-            <div class="dropdown-menu"> <a class="dropdown-item" href="technology.php">Travel</a>
-              <a class="dropdown-item" href="travel.php">Lifestyle</a>
-              <a class="dropdown-item" href="travel.php">Cruises</a>
+            <div class="dropdown-menu"> <a class="dropdown-item" href="technology.php">Technology</a>
+              <a class="dropdown-item" href="entertainment.php">Entertainment</a>
+              <a class="dropdown-item" href="sport.php">Sport</a>
+              <a class="dropdown-item" href="travel.php">Travel</a>
+              <a class="dropdown-item" href="health.php">Health</a>
+          
             </div>
           </li>
           <li class="nav-item"> <a class="nav-link" href="contact.php">Contact</a>

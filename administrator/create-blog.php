@@ -58,11 +58,12 @@ include "config.php";
                 </div>
                 <div class="form-group">
                   <label for="inputGroupFile02">Upload Thumbnail</label>
-                  <div class="input-group">
+                  <div class="input-group mb-3">
                     <div class="custom-file">
-                      <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile02" required>
+                      <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile02" onchange="previewThumbnail(event)">
                       <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
                     </div>
+                    <img id="thumbnailPreview" name="thumbnail" src="upload/<?= $row['thumbnail'] ?>" alt="Thumbnail Preview" class="img-thumbnail mt-2" style="display: none; max-width: 200px;">
                   </div>
                 </div>
               </div>

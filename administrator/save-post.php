@@ -5,6 +5,7 @@ if (!isset($_SESSION["auth"])) {
     header("Location: index.php");
     exit;
 }
+
 if (isset($_FILES['thumbnail'])) {
     $errors = array();
 
@@ -15,13 +16,13 @@ if (isset($_FILES['thumbnail'])) {
     $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
     $extensions = array("jpeg", "jpg", "png");
 
-
     if (in_array($file_ext, $extensions) === false) {
-        $errors[] = "This extension is not allowed,please choose a jpg or png format";
+        $errors[] = "This extension is not allowed, please choose a jpg or png format";
     }
 
+    // Uncomment this if you want to limit the file size
     // if ($file_size > 2097152) {
-    //     $errors[] = "file size must be 2mb or lower";
+    //     $errors[] = "File size must be 2MB or lower";
     // }
 
     if (empty($errors) == true) {
@@ -32,22 +33,23 @@ if (isset($_FILES['thumbnail'])) {
         }
     }
 
-    //print_r($_POST);
     if (isset($_POST['submit'])) {
-
-        $title = mysqli_escape_string($conn, $_POST['post_title']);
+        $title = mysqli_real_escape_string($conn, $_POST['post_title']);
         $description = mysqli_real_escape_string($conn, $_POST["description"]);
-        $category = mysqli_escape_string($conn, $_POST['category']);
+        $category = mysqli_real_escape_string($conn, $_POST['category']);
         $date = date("d M,Y");
         $author = $_SESSION['auth']['id'];
 
-        $sql = "INSERT INTO blogposts(title,description,category,post_date,author,thumbnail) VALUES('{$title}','{$description}', '{$category}','{$date}','{$author}','{$file_name}');";
-        // $sql .= "UPDATE category SET post = post+1 WHERE category_id= {$category}";
-
+        $sql = "INSERT INTO blogposts (title, description, category, post_date, author, thumbnail) VALUES ('{$title}', '{$description}', '{$category}', '{$date}', '{$author}', '{$file_name}')";
         if (mysqli_query($conn, $sql)) {
-            header("location:blog-lists.php");
+            // Update the post_count in the blogcategories table
+            $update_sql = "UPDATE blogcategories SET post = post + 1 WHERE category_id = '{$category}'";
+            mysqli_query($conn, $update_sql);
+
+            header("location: blog-lists.php");
         } else {
-            echo "<div class = 'alert alert-danger'>Query failed </div>";
+            echo "<div class='alert alert-danger'>Query failed: " . mysqli_error($conn) . "</div>";
         }
     }
 }
+?>
