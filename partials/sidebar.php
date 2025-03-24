@@ -1,62 +1,57 @@
+<?php
+include 'administrator/config.php';
+
+
+// Check if the user is logged in
+// if (!isset($_SESSION['auth'])) {
+//     echo "<p>User not logged in.</p>";
+//     exit;
+// }
+
+// Fetch the logged-in user's information
+$user_id = $_SESSION['auth']['id'];
+$sql = "SELECT * FROM blogusers WHERE id = $user_id";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
+
+// Fetch the recent articles written by the logged-in user
+$articles_sql = "SELECT * FROM blogposts WHERE author = $user_id ORDER BY post_id DESC LIMIT 5";
+$articles_result = mysqli_query($conn, $articles_sql);
+?>
+
 <div class="col-lg-4">
   <div class="widget-blocks">
     <div class="row">
-      <div class="col-lg-12">
-        <div class="widget">
-          <div class="widget-body">
-            <img loading="lazy" decoding="async" src="images/author.jpg" alt="About Me" class="w-100 author-thumb-sm d-block">
-            <h2 class="widget-title my-3">Hootan Safiyari</h2>
-            <p class="mb-3 pb-2">Hello, I’m Hootan Safiyari. A Content writer, Developer and Story teller. Working as a Content writer at CoolTech Agency. Quam nihil …</p> 
-            <a href="about.php" class="btn btn-sm btn-outline-primary">Know More</a>
-          </div>
-        </div>
+    <div class="col-lg-12">       
       </div>
       <div class="col-lg-12 col-md-6">
         <div class="widget">
-          <h2 class="section-title mb-3">Recommended</h2>
+          <h2 class="section-title mb-3">Recent Articles</h2>
           <div class="widget-body">
             <div class="widget-list">
-              <article class="card mb-4">
-                <div class="card-image">
-                  <div class="post-info"> <span class="text-uppercase">1 minutes read</span>
-                  </div>
-                  <img loading="lazy" decoding="async" src="images/post/post-9.jpg" alt="Post Thumbnail" class="w-100">
-                </div>
-                <div class="card-body px-0 pb-1">
-                  <h3><a class="post-title post-title-sm" href="article.html">Portugal and France Now Allow Unvaccinated Tourists</a></h3>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor …</p>
-                  <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-                  </div>
-                </div>
-              </article>
-              <a class="media align-items-center" href="article.html">
-                <img loading="lazy" decoding="async" src="images/post/post-2.jpg" alt="Post Thumbnail" class="w-100">
-                <div class="media-body ml-3">
-                  <h3 style="margin-top:-5px">These Are Making It Easier To Visit</h3>
-                  <p class="mb-0 small">Heading Here is example of headings. You can use …</p>
-                </div>
-              </a>
-              <a class="media align-items-center" href="article.html"> 
-                <span class="image-fallback image-fallback-xs">No Image Specified</span>
-                <div class="media-body ml-3">
-                  <h3 style="margin-top:-5px">No Image specified</h3>
-                  <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                </div>
-              </a>
-              <a class="media align-items-center" href="article.html">
-                <img loading="lazy" decoding="async" src="images/post/post-5.jpg" alt="Post Thumbnail" class="w-100">
-                <div class="media-body ml-3">
-                  <h3 style="margin-top:-5px">Perfect For Fashion</h3>
-                  <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                </div>
-              </a>
-              <a class="media align-items-center" href="article.html">
-                <img loading="lazy" decoding="async" src="images/post/post-9.jpg" alt="Post Thumbnail" class="w-100">
-                <div class="media-body ml-3">
-                  <h3 style="margin-top:-5px">Record Ultra Smooth Video</h3>
-                  <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                </div>
-              </a>
+              <?php
+              if (mysqli_num_rows($articles_result) > 0) {
+                while ($article = mysqli_fetch_assoc($articles_result)) {
+              ?>
+                  <article class="card mb-4">
+                    <div class="card-image">
+                      <div class="post-info"> <span class="text-uppercase"><?= $article['post_date'] ?></span>
+                      </div>
+                      <img loading="lazy" decoding="async" src="administrator/upload/<?= $article['thumbnail'] ?>" alt="Post Thumbnail" class="w-100">
+                    </div>
+                    <div class="card-body px-0 pb-1">
+                      <h3><a class="post-title post-title-sm" href="article.php?id=<?= $article['post_id'] ?>"><?= htmlspecialchars($article['title']) ?></a></h3>
+                      <p class="card-text"><?= substr(strip_tags($article['description']), 0, 100) . "..." ?></p>
+                      <div class="content"> <a class="read-more-btn" href="article.php?id=<?= $article['post_id'] ?>">Read Full Article</a>
+                      </div>
+                    </div>
+                  </article>
+              <?php
+                }
+              } else {
+                echo "<p>No recent articles found.</p>";
+              }
+              ?>
             </div>
           </div>
         </div>
@@ -67,7 +62,6 @@
           <div class="widget-body">
             <ul class="widget-list">
               <?php
-              include 'administrator/config.php';
               $sql = "SELECT blogcategories.category_name, blogcategories.category_id, COUNT(blogposts.post_id) AS post 
                       FROM blogcategories 
                       LEFT JOIN blogposts ON blogcategories.category_id = blogposts.category 

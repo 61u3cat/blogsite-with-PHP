@@ -45,7 +45,7 @@ $total_pages = ceil($total_posts / $posts_per_page);
                     <a href="article.php?id=<?= $row['post_id'] ?>">
                       <div class="card-image">
                         <?php if (!empty($row['thumbnail'])): ?>
-                          <img src="administrator/upload/<?= $row['thumbnail'] ?>" alt="Post Thumbnail" class="img-fluid">
+                          <img src="administrator/upload/<?= $row['thumbnail']?>" alt="Post Thumbnail" class="img-fluid">
                         <?php endif; ?>
                         <div class="post-info"> <span class="text-uppercase"><?= $row['post_date'] ?></span>
                         </div>

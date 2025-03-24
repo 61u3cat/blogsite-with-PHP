@@ -1,5 +1,7 @@
-
-
+<?php
+session_start();
+// include 'administrator/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en-us">
 
@@ -30,4 +32,5 @@
 <body>
 
 <?php include "navigation.php"; ?>
+
 
