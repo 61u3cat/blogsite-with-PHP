@@ -1,6 +1,6 @@
 <?php
 session_start();
-// include 'administrator/config.php';
+ include 'administrator/config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en-us">

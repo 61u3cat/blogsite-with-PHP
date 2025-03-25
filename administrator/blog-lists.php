@@ -65,21 +65,18 @@
                         <td><?= $row['category_name'] ?></td>
                         <td><?= $row['post_date'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><img src="upload/<?= $row['thumbnail'] ?>"></td>
+                        <td><a href="../index.php?id=<?= $row['post_id'] ?>"><img src="upload/<?= $row['thumbnail'] ?>" alt="Thumbnail" class="img-fluid"></a></td>
                         <td>
-                          <a href='edit.php?post_id=<?= $row['post_id'] ?>' class='btn btn-primary'>Edit</a>
-                          <a href='delete.php?post_id=<?= $row['post_id'] ?>' class='btn btn-danger' onclick='return confirm("are you sure?")'>Delete</a>
+                          <button class='btn btn-primary' onclick='showPasswordModal("edit", <?= $row['post_id'] ?>)'>Edit</button>
+                          <button class='btn btn-danger' onclick='showPasswordModal("delete", <?= $row['post_id'] ?>)'>Delete</button>
                         </td>
-                    <?php
+                      </tr>
+                  <?php
                     }
                   }
-                    ?>
-
-                      </tr>
+                  ?>
                 </tbody>
-
                 <tfoot>
-
                 </tfoot>
               </table>
             </div>
@@ -98,5 +95,61 @@
 </div>
 <!-- /.content-wrapper -->
 
+<!-- Password Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="passwordModalLabel">Enter Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="passwordForm">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <input type="hidden" id="actionType" name="actionType">
+          <input type="hidden" id="postId" name="postId">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- Control Sidebar -->
+<script>
+  function showPasswordModal(action, postId) {
+    document.getElementById('actionType').value = action;
+    document.getElementById('postId').value = postId;
+    $('#passwordModal').modal('show');
+  }
+
+  document.getElementById('passwordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var actionType = document.getElementById('actionType').value;
+    var postId = document.getElementById('postId').value;
+    var password = document.getElementById('password').value;
+
+    // Perform AJAX request to verify password
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'verify_password.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        if (xhr.responseText === 'success') {
+          if (actionType === 'edit') {
+            window.location.href = 'edit.php?post_id=' + postId;
+          } else if (actionType === 'delete') {
+            window.location.href = 'delete-blog.php?post_id=' + postId;
+          }
+        } else {
+          alert('Incorrect password. Please try again.');
+        }
+      }
+    };
+    xhr.send('password=' + encodeURIComponent(password) + '&post_id=' + postId);
+  });
+</script>

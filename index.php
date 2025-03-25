@@ -45,7 +45,7 @@ $total_pages = ceil($total_posts / $posts_per_page);
                     <a href="article.php?id=<?= $row['post_id'] ?>">
                       <div class="card-image">
                         <?php if (!empty($row['thumbnail'])): ?>
-                          <img src="administrator/upload/<?= $row['thumbnail']?>" alt="Post Thumbnail" class="img-fluid">
+                          <img src="administrator/upload/<?= $row['thumbnail'] ?>" alt="Post Thumbnail" class="img-fluid">
                         <?php endif; ?>
                         <div class="post-info"> <span class="text-uppercase"><?= $row['post_date'] ?></span>
                         </div>
@@ -67,17 +67,20 @@ $total_pages = ceil($total_posts / $posts_per_page);
               }
             }
             ?>
-
+            <div class="col-12">
+              <h3 class="section-title">Old Articles</h3>
+            </div>
             <?php
             // Fetch the remaining posts excluding the latest one
             $sql = "SELECT * FROM blogposts 
                     LEFT JOIN blogcategories ON blogposts.category = blogcategories.category_id 
                     LEFT JOIN blogusers ON blogposts.author = blogusers.id
-                    ORDER BY post_id DESC LIMIT $posts_per_page OFFSET $offset";
+                    ORDER BY post_id ASC LIMIT $posts_per_page OFFSET $offset";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
               while ($row = mysqli_fetch_assoc($result)) {
             ?>
+
                 <div class="col-md-6 mb-4">
                   <article class="card article-card article-card-sm h-100">
                     <a href="article.php?id=<?= $row['post_id'] ?>">
@@ -100,6 +103,7 @@ $total_pages = ceil($total_posts / $posts_per_page);
                     </div>
                   </article>
                 </div>
+
             <?php
               }
             }

@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>YoursFeed | Log in (v2)</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -51,12 +51,12 @@ if (isset($_POST['login'])) {
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="regis" class="h1"><b>Admin</b>LTE</a>
+        <a href="regis" class="h1"><b>YoursFeed</b></a>
       </div>
 
 
       <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">Sign in to create a blog</p>
         <?php
         if (!empty($_SESSION['error'])) { ?>
           <div class="alert alert-danger alert-dismissible">
@@ -105,9 +105,7 @@ if (isset($_POST['login'])) {
         </form>
 
         <div class="social-auth-links text-center mt-2 mb-3">
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-          </a>
+        
           <a href="logout.php" class="btn btn-block btn-danger">
             <i class="fab fa-google-plus mr-2"></i> Logout
           </a>

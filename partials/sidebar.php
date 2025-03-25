@@ -1,29 +1,15 @@
 <?php
+
 include 'administrator/config.php';
 
-
-// Check if the user is logged in
-// if (!isset($_SESSION['auth'])) {
-//     echo "<p>User not logged in.</p>";
-//     exit;
-// }
-
-// Fetch the logged-in user's information
-$user_id = $_SESSION['auth']['id'];
-$sql = "SELECT * FROM blogusers WHERE id = $user_id";
-$result = mysqli_query($conn, $sql);
-$user = mysqli_fetch_assoc($result);
-
-// Fetch the recent articles written by the logged-in user
-$articles_sql = "SELECT * FROM blogposts WHERE author = $user_id ORDER BY post_id DESC LIMIT 5";
+// Fetch the recent articles
+$articles_sql = "SELECT * FROM blogposts ORDER BY post_id DESC LIMIT 5";
 $articles_result = mysqli_query($conn, $articles_sql);
 ?>
 
 <div class="col-lg-4">
   <div class="widget-blocks">
     <div class="row">
-    <div class="col-lg-12">       
-      </div>
       <div class="col-lg-12 col-md-6">
         <div class="widget">
           <h2 class="section-title mb-3">Recent Articles</h2>
