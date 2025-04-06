@@ -4,6 +4,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'create-blog') !== false) {
   $current = 'create-blog';
 } elseif (strpos($_SERVER['REQUEST_URI'], 'blog-lists') !== false) {
   $current = 'blog-lists';
+}
+elseif (strpos($_SERVER['REQUEST_URI'], 'blog-comments') !== false) {
+  $current = 'blog-comments';
 }elseif (strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false) {
   $current = 'dashboard';
 }

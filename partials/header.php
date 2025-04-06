@@ -6,6 +6,7 @@ session_start();
 <html lang="en-us">
 
 <head>
+<link rel="stylesheet" href="css/style.css">
 	<meta charset="utf-8">
 	<title>Reporter - HTML Blog Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">

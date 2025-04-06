@@ -1,3 +1,7 @@
+<?php
+//session_start();
+$user_id = isset($_SESSION['auth']['id']) ? $_SESSION['auth']['id'] : 0;
+?>
 <header class="navigation">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light px-0" style="background-color: #f8f9fa;">
@@ -12,7 +16,7 @@
 
       <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
         <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
-          <li class="nav-item"> <a class="nav-link" href="about.php" style="color: #6c757d;">About Me</a>
+          <li class="nav-item"> <a class="nav-link" href="about.php?id=<?=$user_id?>" style="color: #6c757d;">About Me</a>
           </li>
           <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #6c757d;">
@@ -47,63 +51,64 @@
     </nav>
   </div>
 </header>
-
+<!-- Link to external CSS -->
 <style>
-  .logo-img {
-    max-height: 100px; /* Adjust the height as needed */
-    width: auto;
-  }
+  /*CSS for navbar*/
+.logo-img {
+  max-height: 100px; /* Adjust the height as needed */
+  width: auto;
+}
 
-  .navbar-nav {
-    align-items: center;
-  }
+.navbar-nav {
+  align-items: center;
+}
 
-  .form-inline {
-    display: flex;
-    align-items: center;
-  }
+.form-inline {
+  display: flex;
+  align-items: center;
+}
 
-  .navbar-light .navbar-nav .nav-link {
-    color: #6c757d; /* Pastel color for nav links */
-  }
+.navbar-light .navbar-nav .nav-link {
+  color: #6c757d; /* Pastel color for nav links */
+}
 
-  .navbar-light .navbar-nav .nav-link:hover {
-    color: #495057; /* Darker pastel color for hover state */
-  }
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #495057; /* Darker pastel color for hover state */
+}
 
-  .dropdown-menu {
-    background-color: #f8f9fa; /* Pastel background color for dropdown */
-  }
+.dropdown-menu {
+  background-color: #f8f9fa; /* Pastel background color for dropdown */
+}
 
-  .dropdown-item {
-    color:rgb(150, 223, 72); /* Pastel color for dropdown items */
-  }
+.dropdown-item {
+  color:rgb(150, 223, 72); /* Pastel color for dropdown items */
+}
 
-  .dropdown-item:hover {
-    color:rgb(152, 225, 88); /* Darker pastel color for hover state */
-    background-color: #e9ecef; /* Light pastel background color for hover state */
-  }
+.dropdown-item:hover {
+  color:rgb(152, 225, 88); /* Darker pastel color for hover state */
+  background-color: #e9ecef; /* Light pastel background color for hover state */
+}
 
-  .btn-outline-success {
-    color:rgb(16, 16, 17); /* Pastel color for button text */
-    border-color: #ced4da; /* Pastel border color for button */
-  }
+.btn-outline-success {
+  color:rgb(16, 16, 17); /* Pastel color for button text */
+  border-color: #ced4da; /* Pastel border color for button */
+}
 
-  .btn-outline-success:hover {
-    color: #fff; /* White color for button text on hover */
-    background-color:rgb(21, 22, 23); /* Darker pastel background color for button on hover */
-    border-color:rgb(151, 190, 229); /* Darker pastel border color for button on hover */
-  }
+.btn-outline-success:hover {
+  color: #fff; /* White color for button text on hover */
+  background-color:rgb(21, 22, 23); /* Darker pastel background color for button on hover */
+  border-color:rgb(151, 190, 229); /* Darker pastel border color for button on hover */
+}
 
-  .form-control {
-    background-color: #e9ecef; /* Pastel background color for input */
-    border-color: #ced4da; /* Pastel border color for input */
-    color: #495057; /* Pastel text color for input */
-  }
+.form-control {
+  background-color: #e9ecef; /* Pastel background color for input */
+  border-color: #ced4da; /* Pastel border color for input */
+  color: #495057; /* Pastel text color for input */
+}
 
-  .form-control:focus {
-    background-color: #e9ecef; /* Pastel background color for input on focus */
-    border-color: #495057; /* Darker pastel border color for input on focus */
-    color: #495057; /* Pastel text color for input on focus */
-  }
+.form-control:focus {
+  background-color: #e9ecef; /* Pastel background color for input on focus */
+  border-color: #495057; /* Darker pastel border color for input on focus */
+  color: #495057; /* Pastel text color for input on focus */
+}
 </style>

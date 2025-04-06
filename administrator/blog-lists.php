@@ -53,8 +53,10 @@
                 </thead>
                 <tbody>
                   <?php
-                  $sql = "SELECT * FROM blogposts LEFT JOIN blogcategories ON blogposts.category=blogcategories.category_id LEFT JOIN blogusers ON blogposts.author = blogusers.id
-                ORDER BY post_id DESC";
+                  $sql = "SELECT * FROM blogposts 
+                          LEFT JOIN blogcategories ON blogposts.category = blogcategories.category_id 
+                          LEFT JOIN blogusers ON blogposts.author = blogusers.id
+                          ORDER BY post_id DESC";
                   $result = mysqli_query($conn, $sql);
                   if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -65,7 +67,7 @@
                         <td><?= $row['category_name'] ?></td>
                         <td><?= $row['post_date'] ?></td>
                         <td><?= $row['name'] ?></td>
-                        <td><a href="../index.php?id=<?= $row['post_id'] ?>"><img src="upload/<?= $row['thumbnail'] ?>" alt="Thumbnail" class="img-fluid"></a></td>
+                        <td><a href="../article.php?id=<?= $row['post_id'] ?>"><img src="upload/<?= $row['thumbnail'] ?>" alt="Thumbnail" class="img-fluid"></a></td>
                         <td>
                           <button class='btn btn-primary' onclick='showPasswordModal("edit", <?= $row['post_id'] ?>)'>Edit</button>
                           <button class='btn btn-danger' onclick='showPasswordModal("delete", <?= $row['post_id'] ?>)'>Delete</button>

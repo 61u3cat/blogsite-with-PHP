@@ -40,10 +40,9 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+        <!-- Existing Create Section -->
         <li class="nav-item <?= $current == 'create-blog' ? 'menu-open' : '' ?>">
-          <a href="#" class="nav-link ">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
             <p>
               Create
@@ -51,52 +50,55 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <!-- Navigation Item for Creating Blog Posts -->
             <li class="nav-item">
-              <!-- Link to Create Blog Page, sets class 'active' if $current is 'create-blog' -->
               <a href="create-blog.php" class="nav-link <?= $current == 'create-blog' ? 'active' : '' ?>">
-                <i class="far fa-circle nav-icon"></i> <!-- Icon for Create Blog -->
-                <p>Create Posts</p> <!-- Text for Create Blog -->
+                <i class="far fa-circle nav-icon"></i>
+                <p>Create Posts</p>
               </a>
             </li>
-          </ul> <!-- Closing tag for navigation treeview list -->
-        </li> <!-- Closing tag for the navigation item -->
+          </ul>
+        </li>
 
-        <!-- Navigation Item for Blog Lists, adds class 'menu-open' if $current is 'blog-lists' -->
-        <li class="nav-item 
-          <?php 
-
-          if($current == 'blog-lists'){
-            echo 'menu-open';
-          }elseif($current == 'dashboard'){
-            echo 'menu-open';
-
-          }
-          ?>
-        ">
-          <!-- Link to open sub-menu for Blog Lists -->
+        <!-- Existing Blog Lists Section -->
+        <li class="nav-item <?= $current == 'blog-lists' || $current == 'dashboard' ? 'menu-open' : '' ?>">
           <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-table"></i> <!-- Icon for Lists -->
+            <i class="nav-icon fas fa-table"></i>
             <p>
-              Lists <!-- Text for Lists -->
-              <i class="fas fa-angle-left right"></i> <!-- Icon for expanding sub-menu -->
+              Lists
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview"> <!-- Sub-menu for Blog Lists -->
-            <!-- Navigation Item for Blog Lists -->
+          <ul class="nav nav-treeview">
             <li class="nav-item">
-              <!-- Link to Blog Lists Page, sets class 'active' if $current is 'blog-lists' -->
               <a href="blog-lists.php" class="nav-link <?= $current == 'blog-lists' ? 'active' : '' ?>">
-                <i class="far fa-circle nav-icon"></i> <!-- Icon for Blog Lists -->
-                <p>Blogs Lists</p> <!-- Text for Blog Lists -->
+                <i class="far fa-circle nav-icon"></i>
+                <p>Blogs Lists</p>
               </a>
+            </li>
+            <li class="nav-item">
               <a href="dashboard.php" class="nav-link <?= $current == 'dashboard' ? 'active' : '' ?>">
-                <i class="far fa-circle nav-icon"></i> <!-- Icon for Blog Lists -->
-                <p>UserList</p> <!-- Text for Blog Lists -->
+                <i class="far fa-circle nav-icon"></i>
+                <p>User List</p>
               </a>
-              <?php
-              
-              echo $current; ?>
+            </li>
+          </ul>
+        </li>
+
+        <!-- New Blog Comments Section -->
+        <li class="nav-item <?= $current == 'blog-comments' ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-comments"></i>
+            <p>
+              Comments
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="blog-comments.php" class="nav-link <?= $current == 'blog-comments' ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Comments</p>
+              </a>
             </li>
           </ul>
         </li>

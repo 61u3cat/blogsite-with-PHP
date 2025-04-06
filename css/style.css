@@ -73,6 +73,7 @@ h6, .h6 {
   font-size: 14px;
 }
 
+
 /* Button style */
 .btn {
   font-family: "Work Sans", sans-serif;
@@ -943,3 +944,70 @@ footer .section {
   box-shadow: none;
 }
 /*# sourceMappingURL=style.css.map */
+/*CSS for navbar*/
+/* About Page Styles */
+.section {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.breadcrumbs a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.user-info {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.card {
+  border: none;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-text {
+  color: #6c757d;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.read-more-btn {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
